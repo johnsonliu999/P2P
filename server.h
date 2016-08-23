@@ -10,6 +10,7 @@ class Server : public QObject
 {
     Q_OBJECT
 
+    friend class ProcessThread;
     enum {
         PORT = 1234,
     };
@@ -19,8 +20,8 @@ public:
 
 private:
     QTcpServer* m_pTcpServer;
-    QMultiMap<QString, quint32> m_file_ip_map;
-    QHash<quint32, bool> m_ip_state_hash;
+    QMultiMap<QString, QString> m_file_ip_map;
+    QStringList m_ip_list;
 
 signals:
 

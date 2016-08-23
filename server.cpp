@@ -26,8 +26,10 @@ void Server::on_acceptError(QAbstractSocket::SocketError error)
 void Server::on_newConnection()
 {
     auto pSocket = m_pTcpServer->nextPendingConnection();
+    qDebug() << "Connect :" << pSocket->peerAddress().toString();
 
     auto p_proThread = new ProcessThread(pSocket, this);
+    pSocket->setParent(nullptr);
     pSocket->moveToThread(p_proThread);
 
     p_proThread->start();
