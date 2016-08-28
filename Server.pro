@@ -18,3 +18,6 @@ SOURCES += main.cpp \
 HEADERS += \
     server.h \
     processthread.h
+
+DISTFILES += \
+    README

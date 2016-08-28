@@ -24,6 +24,10 @@ public:
     ProcessThread(QTcpSocket *pSocket, QObject *parent = 0);
 
 private:
+    void loginPro();
+    void lookupPro();
+
+private:
     QTcpSocket *m_pSocket;
     QHostAddress m_addr;
     QMutex m_mutex;
