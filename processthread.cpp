@@ -52,9 +52,8 @@ inline void ProcessThread::lookupPro()
 
     qDebug() << m_addr.toString() << " find ip :" << ip;
 
-    //QDataStream out(m_pSocket);
-    QDataStream *out = new QDataStream(m_pSocket);
-    *out << ip;
+    QDataStream out(m_pSocket);
+    out << ip;
 }
 
 void ProcessThread::on_readyRead()

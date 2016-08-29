@@ -10,3 +10,9 @@ P2P服务器端
 2.每次查询到对应ip后还需在ip链表中查询对应ip是否存在，如不存在则需重新搜索并清楚对应file-ip记录
 3.Socket在线程中执行完毕后应该移回主线程，以便后续处理
 
+问题：
+1.Datastream问题[暂时不影响]
+[ProcessThread::lookupPro()]: out << ip
+Datastream在新开的线程中进行发送，会给socket对象创建子对象，但是创建过程可能发生在nextPending的线程中
+
+2.

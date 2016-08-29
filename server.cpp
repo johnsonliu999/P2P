@@ -7,6 +7,7 @@
 Server::Server(QObject *parent) : QObject(parent),
     m_pTcpServer(new QTcpServer(this))
 {
+    qDebug() << "Server Thread :" << thread();
     if (!m_pTcpServer->listen(QHostAddress::Any, PORT)) {
         qDebug() << "Listen error :" << m_pTcpServer->errorString();
         return;
@@ -26,6 +27,7 @@ void Server::on_acceptError(QAbstractSocket::SocketError error)
 void Server::on_newConnection()
 {
     auto pSocket = m_pTcpServer->nextPendingConnection();
+    pSocket->disconnect();
     qDebug() << "Connect :" << pSocket->peerAddress().toString();
 
     auto p_proThread = new ProcessThread(pSocket, this);
